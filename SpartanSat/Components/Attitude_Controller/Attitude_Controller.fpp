@@ -1,11 +1,11 @@
 module SpartanSat {
-    @ Fprime component for the IMU hardware input
-    active component IMU_Driver {
+    @ controller for cubesat attitude, sends commands to actuators (reaction wheels/magnetorquers)
+    active component Attitude_Controller {
 
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port
         @ TODO
-        async input port TODO: Svc.Sched
+        async command TODO opcode 0
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####
@@ -16,10 +16,6 @@ module SpartanSat {
 
         # @ Example telemetry counter
         # telemetry ExampleCounter: U64
-        telemetry angular_rate_x: F64
-        telemetry angular_rate_y: F64
-        telemetry angular_rate_z: F64
-
 
         # @ Example event
         # event ExampleStateEvent(example_state: Fw.On) severity activity high id 0 format "State set to {}"
@@ -35,6 +31,9 @@ module SpartanSat {
         ###############################################################################
         @ Port for requesting the current time
         time get port timeCaller
+
+        @ Enables command handling
+        import Fw.Command
 
         @ Enables event handling
         import Fw.Event
