@@ -12,6 +12,7 @@
 namespace SpartanSat {
 
 class Attitude_Controller final : public Attitude_ControllerComponentBase {
+  F64 x = 0;
   public:
     // ----------------------------------------------------------------------
     // Component construction and destruction
@@ -29,12 +30,21 @@ class Attitude_Controller final : public Attitude_ControllerComponentBase {
     // Handler implementations for commands
     // ----------------------------------------------------------------------
 
-    //! Handler implementation for command TODO
+    //! Handler implementation for command SET_PARAMETER
     //!
     //! TODO
-    void TODO_cmdHandler(FwOpcodeType opCode,  //!< The opcode
-                         U32 cmdSeq            //!< The command sequence number
-                         ) override;
+    void SET_PARAMETER_cmdHandler(FwOpcodeType opCode,  //!< The opcode
+                                  U32 cmdSeq,           //!< The command sequence number
+                                  F64 parameter) override;
+
+    // ----------------------------------------------------------------------
+    // Handler implementations for typed input ports
+    // ----------------------------------------------------------------------
+
+    //! Handler implementation for run
+    void run_handler(FwIndexType portNum,  //!< The port number
+                     U32 context           //!< The call order
+                     ) override;
 };
 
 }  // namespace SpartanSat
